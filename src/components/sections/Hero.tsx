@@ -93,19 +93,21 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/40" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 text-center">
-        <h1 className="font-heading text-5xl leading-none tracking-[3px] text-white uppercase md:text-6xl">
-          The Luxury Travel Experts
-        </h1>
-        <p className="mt-6 text-base tracking-wide text-white/90 uppercase">
-          Tailor-made trips for every budget
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Button variant="outline" href="#trips">
-            Explore Our Trips
-          </Button>
-          <Button variant="solid" href="#" comingSoon>
-            Plan My Trip
-          </Button>
+        <div className="mx-auto inline-block rounded-xl bg-black/30 px-10 py-8 backdrop-blur-sm">
+          <h1 className="font-heading text-5xl leading-none tracking-[3px] text-white uppercase md:text-6xl">
+            The Luxury Travel Experts
+          </h1>
+          <p className="mt-6 text-base tracking-wide text-white/90 uppercase">
+            Tailor-made trips for every budget
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Button variant="outline" href="#trips">
+              Explore Our Trips
+            </Button>
+            <Button variant="solid" href="#" comingSoon>
+              Plan My Trip
+            </Button>
+          </div>
         </div>
       </div>
 
