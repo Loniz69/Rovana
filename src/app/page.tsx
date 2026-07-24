@@ -1,6 +1,5 @@
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
-import { Intro } from "@/components/sections/Intro";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { TripsCarousel } from "@/components/sections/TripsCarousel";
 import { PressStrip } from "@/components/sections/PressStrip";
@@ -18,9 +17,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Intro />
-        <TripsCarousel />
         <Testimonials />
+        <TripsCarousel />
         <PressStrip />
         <WhatWeDo />
         <GuideSection />

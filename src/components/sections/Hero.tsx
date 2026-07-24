@@ -1,19 +1,68 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/Button";
 import { assetPath, videoUrl } from "@/lib/asset-path";
 
 export function Hero() {
+  const kaabaRef = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLVideoElement>(null);
+  const [showKaaba, setShowKaaba] = useState(true);
+  const heroReady = useRef(false);
+
+  useEffect(() => {
+    const v = heroRef.current;
+    if (!v) return;
+    v.src = videoUrl("hero-desktop.mp4");
+    v.load();
+    const mark = () => {
+      heroReady.current = true;
+    };
+    v.addEventListener("canplaythrough", mark);
+    return () => v.removeEventListener("canplaythrough", mark);
+  }, []);
+
+  const transition = () => {
+    setShowKaaba(false);
+    heroRef.current?.play();
+  };
+
+  const handleKaabaEnded = () => {
+    if (heroReady.current) {
+      transition();
+    } else {
+      const v = kaabaRef.current;
+      if (!v) return;
+      v.currentTime = 0;
+      v.play();
+    }
+  };
+
   return (
     <section className="relative flex h-screen min-h-[700px] items-center overflow-hidden">
+      {/* Main hero — hidden until kaaba finishes; src set in useEffect for background fetch */}
       <video
-        className="absolute inset-0 size-full object-cover"
-        autoPlay
+        ref={heroRef}
+        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${showKaaba ? "opacity-0" : "opacity-100"}`}
         muted
         loop
         playsInline
         poster={assetPath("/images/trips/lost-generation.jpg")}
+      />
+
+      {/* Kaaba video — plays first, crossfades out when hero is ready */}
+      <video
+        ref={kaabaRef}
+        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${showKaaba ? "opacity-100" : "opacity-0"}`}
+        autoPlay
+        muted
+        playsInline
+        onEnded={handleKaabaEnded}
       >
-        <source src={videoUrl("hero-desktop.mp4")} type="video/mp4" />
+        <source media="(max-width: 767px)" src={videoUrl("kaaba-mobile.mp4")} type="video/mp4" />
+        <source src={videoUrl("kaaba-desktop.mp4")} type="video/mp4" />
       </video>
+
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/40" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 text-center">
