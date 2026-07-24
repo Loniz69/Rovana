@@ -34,11 +34,11 @@ export function Hero() {
     const markReady = () => {
       heroReady.current = true;
     };
-    hero.addEventListener("canplaythrough", markReady);
+    hero.addEventListener("canplay", markReady);
 
     return () => {
       kaaba.removeEventListener("loadeddata", onFirstFrame);
-      hero.removeEventListener("canplaythrough", markReady);
+      hero.removeEventListener("canplay", markReady);
     };
   }, []);
 
