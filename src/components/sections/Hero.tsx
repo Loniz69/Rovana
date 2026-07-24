@@ -47,16 +47,16 @@ export function Hero() {
         muted
         loop
         playsInline
-        poster={assetPath("/images/trips/lost-generation.jpg")}
       />
 
-      {/* Kaaba video — plays first, crossfades out when hero is ready */}
+      {/* Kaaba video — poster shows instantly while video buffers, then plays */}
       <video
         ref={kaabaRef}
         className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${showKaaba ? "opacity-100" : "opacity-0"}`}
         autoPlay
         muted
         playsInline
+        poster={assetPath("/images/trips/lost-generation.jpg")}
         onEnded={handleKaabaEnded}
       >
         <source media="(max-width: 767px)" src={videoUrl("kaaba-mobile.mp4")} type="video/mp4" />
