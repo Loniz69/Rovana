@@ -93,7 +93,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/40" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 text-center">
-        <div className="mx-auto inline-block rounded-xl bg-black/30 px-10 py-8 backdrop-blur-sm">
+        <div className="mx-auto max-w-3xl px-16 py-12" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 10%, transparent 75%)" }}>
           <h1 className="font-heading text-5xl leading-none tracking-[3px] text-white uppercase md:text-6xl">
             The Luxury Travel Experts
           </h1>
