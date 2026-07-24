@@ -21,13 +21,13 @@ export function Hero() {
           The Luxury Travel Experts
         </h1>
         <p className="mt-6 text-base tracking-wide text-white/90 uppercase">
-          Tailor-made trips, award winning service. Est. 2005.
+          Tailor-made trips, award winning service. Est. 2012.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button variant="outline" href="#trips">
             Explore Our Trips
           </Button>
-          <Button variant="solid" href="#">
+          <Button variant="solid" href="#" comingSoon>
             Plan My Trip
           </Button>
         </div>

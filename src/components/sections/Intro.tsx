@@ -18,13 +18,13 @@ export function Intro() {
             something extraordinary, we craft every detail around you.
           </p>
           <p>
-            For over 20 years, we&apos;ve been recognised as one of the world&apos;s leading luxury travel
+            For over a decade, we&apos;ve been recognised as one of the world&apos;s leading luxury travel
             planners – featured in Modern Luxury&apos;s &lsquo;Best of Luxury Travel&rsquo; Awards – and
             trusted to deliver tailor-made journeys across 100 destinations.
           </p>
           <p>So let&apos;s begin. Let&apos;s do something remarkable.</p>
         </div>
-        <Button variant="solid" href="#" className="mt-8 border-black">
+        <Button variant="solid" href="#" comingSoon className="mt-8 border-black">
           Get In Touch
         </Button>
       </div>

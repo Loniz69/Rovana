@@ -8,13 +8,13 @@ const SLIDES = [
   {
     eyebrow: null,
     title: "What We Do\nAnd Why We Do It",
-    body: "Since our founding in 2005, Rovana has always been about crafting remarkable, tailor made trips for families, couples and private groups around the world. Tom and James – our co-founders – know this better than anyone. You can meet them in our new video.",
+    body: "Since our founding, Rovana has always been about crafting remarkable, tailor made trips for families, couples and private groups around the world. Alex and Sam – our co-founders – know this better than anyone. You can meet them in our new video.",
     cta: "Watch The Film",
   },
   {
-    eyebrow: "Pursuit Of Feeling",
+    eyebrow: "Feel The Journey",
     title: "",
-    body: "Travel has always been about more than just going 'somewhere else'. For us, travel – breathless and beautiful – is about feeling somewhere else; a kind of emotional high that stays with you for the rest of your life.\n\nThe Pursuit of Feeling – our collection of trips, features, and luxury travel experiences – bottles this soulful, sensual desire, taking us back to one of our founding philosophies:\n\nIt's not where you want to go; it's how you want to feel.",
+    body: "Travel has always been about more than just going 'somewhere else'. For us, travel – breathless and beautiful – is about feeling somewhere else; a kind of emotional high that stays with you for the rest of your life.\n\nFeel The Journey – our collection of trips, features, and luxury travel experiences – bottles this soulful, sensual desire, taking us back to one of our founding philosophies:\n\nIt's not where you want to go; it's how you want to feel.",
     cta: "Find Out More",
   },
 ];
@@ -46,7 +46,7 @@ export function WhatWeDo() {
             </h2>
           )}
           <div className="space-y-4 whitespace-pre-line text-foreground">{slide.body}</div>
-          <Button variant="solid" href="#" className="mt-8 border-black">
+          <Button variant="solid" href="#" comingSoon className="mt-8 border-black">
             {slide.cta}
           </Button>
         </div>

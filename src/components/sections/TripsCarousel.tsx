@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { TRIP_CARDS } from "@/data/homepage";
 import { Button } from "@/components/Button";
+import { ComingSoonLink } from "@/components/ComingSoonLink";
 import { assetPath } from "@/lib/asset-path";
 
 export function TripsCarousel() {
@@ -54,7 +55,7 @@ export function TripsCarousel() {
               <div className="absolute inset-x-0 bottom-0 p-5">
                 <p className="text-xs font-medium tracking-wide text-white/80 uppercase">{trip.country}</p>
                 <h3 className="font-heading mt-1 text-lg leading-tight text-white uppercase">{trip.title}</h3>
-                <Button variant="outline" href="#" className="mt-4 px-4 py-2 text-xs">
+                <Button variant="outline" href="#" comingSoon className="mt-4 px-4 py-2 text-xs">
                   Explore Trip
                 </Button>
               </div>
@@ -68,16 +69,19 @@ export function TripsCarousel() {
               Our Travel Experts will help you create a completely bespoke itinerary. Just tell us what you
               want. We&apos;ll make it happen.
             </p>
-            <Button variant="outline" href="#" className="mt-6 px-4 py-2 text-xs">
+            <Button variant="outline" href="#" comingSoon className="mt-6 px-4 py-2 text-xs">
               Create Trip
             </Button>
           </article>
         </div>
 
         <div className="mt-8 text-center">
-          <a href="#" className="text-sm tracking-wide text-white uppercase underline underline-offset-4">
+          <ComingSoonLink
+            href="#"
+            className="text-sm tracking-wide text-white uppercase underline underline-offset-4"
+          >
             View All
-          </a>
+          </ComingSoonLink>
         </div>
       </div>
     </section>

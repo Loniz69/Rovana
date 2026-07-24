@@ -165,7 +165,7 @@ export const WHY_ITEMS: WhyItem[] = [
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: "Rovana",
-    links: ["Speak To An Expert", "Media Enquiries", "Get In Touch", "Pursuit Of Feeling Podcast"],
+    links: ["Speak To An Expert", "Media Enquiries", "Get In Touch", "Feel The Journey Podcast"],
   },
   {
     title: "Useful Information",
@@ -194,8 +194,8 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: "What",
     links: [
-      "Pursuit Of Feeling",
-      "Feelings Engine",
+      "Feel The Journey",
+      "Trip Matching Engine",
       "See You In The Moment",
       "Take Me On A Story",
       "James Bond",

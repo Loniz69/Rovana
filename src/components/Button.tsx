@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 
 const VARIANTS = {
@@ -10,11 +12,14 @@ export function Button({
   variant = "solid",
   className,
   children,
+  comingSoon,
+  onClick,
   ...props
 }: {
   variant?: keyof typeof VARIANTS;
   className?: string;
   children: React.ReactNode;
+  comingSoon?: boolean;
 } & React.ComponentPropsWithoutRef<"a">) {
   return (
     <a
@@ -23,6 +28,14 @@ export function Button({
         VARIANTS[variant],
         className
       )}
+      onClick={
+        comingSoon
+          ? (e) => {
+              e.preventDefault();
+              alert("This will open a new page in the future.");
+            }
+          : onClick
+      }
       {...props}
     >
       {children}

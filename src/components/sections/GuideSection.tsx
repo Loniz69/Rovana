@@ -27,7 +27,7 @@ export function GuideSection() {
               And designed to stay with you long after you return.
             </p>
           </div>
-          <Button variant="solid" href="#" className="mt-8 border-black">
+          <Button variant="solid" href="#" comingSoon className="mt-8 border-black">
             Continue Reading
           </Button>
         </div>

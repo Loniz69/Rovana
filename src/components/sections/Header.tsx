@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Menu, Phone, Search } from "lucide-react";
 import { NAV_LINKS } from "@/data/homepage";
 import { Button } from "@/components/Button";
+import { ComingSoonLink } from "@/components/ComingSoonLink";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,25 +29,25 @@ export function Header() {
         <nav className="hidden items-center gap-8 lg:flex">
           <Search className="size-4 text-white" />
           {NAV_LINKS.map((link) => (
-            <a
+            <ComingSoonLink
               key={link.label}
               href={link.href}
               className="text-[15px] tracking-wide text-white uppercase hover:opacity-70"
             >
               {link.label}
-            </a>
+            </ComingSoonLink>
           ))}
         </nav>
 
         <div className="flex items-center gap-6">
           <a
-            href="tel:+442074269888"
+            href="tel:+442079460958"
             className="hidden items-center gap-2 text-sm text-white lg:flex"
           >
             <Phone className="size-4" />
-            +44 207 426 9888
+            +44 20 7946 0958
           </a>
-          <Button variant="pink" href="#" className="px-6 py-2.5 text-xs">
+          <Button variant="pink" href="#" comingSoon className="px-6 py-2.5 text-xs">
             Enquire Now
           </Button>
           <Menu className="size-6 cursor-pointer text-white" />
