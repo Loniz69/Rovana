@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import { assetPath } from "@/lib/asset-path";
+import { assetPath, videoUrl } from "@/lib/asset-path";
 
 export function Hero() {
   return (
@@ -12,7 +12,7 @@ export function Hero() {
         playsInline
         poster={assetPath("/images/trips/lost-generation.jpg")}
       >
-        <source src={assetPath("/videos/hero-desktop.mp4")} type="video/mp4" />
+        <source src={videoUrl("hero-desktop.mp4")} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/40" />
 
