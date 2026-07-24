@@ -62,9 +62,6 @@ export function Hero() {
     setPhase("kaaba");
   };
 
-  // 0 = invisible · 1 = fully black
-  const BACKDROP_OPACITY = 0.18;
-
   return (
     <section className="relative flex h-screen min-h-[700px] items-center overflow-hidden">
       {/* Poster — permanent base layer, always visible underneath; videos fade in on top */}
@@ -96,11 +93,16 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/40" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 text-center">
-        <div className="mx-auto inline-block rounded-2xl px-10 py-8 backdrop-blur-sm" style={{ background: `rgba(0,0,0,${BACKDROP_OPACITY})` }}>
-          <h1 className="font-heading text-5xl leading-none tracking-[3px] text-white uppercase md:text-6xl">
+          <h1
+            className="font-heading text-5xl leading-none tracking-[3px] text-white uppercase md:text-6xl"
+            style={{ textShadow: "0 0 6px rgba(0,0,0,0.9), 0 0 14px rgba(0,0,0,0.6)" }}
+          >
             The Luxury Travel Experts
           </h1>
-          <p className="mt-6 text-base tracking-wide text-white/90 uppercase">
+          <p
+            className="mt-6 text-base tracking-wide text-white/90 uppercase"
+            style={{ textShadow: "0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.6)" }}
+          >
             Tailor-made trips for every budget
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -111,7 +113,6 @@ export function Hero() {
               Plan My Trip
             </Button>
           </div>
-        </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-xs tracking-[0.2em] text-white uppercase">
