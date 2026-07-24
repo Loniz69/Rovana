@@ -17,7 +17,6 @@ export function Hero() {
     const hero = heroRef.current;
     if (!kaaba || !hero) return;
 
-    // Pick the right kaaba clip for the viewport then start it immediately
     kaaba.src =
       window.innerWidth <= 767
         ? videoUrl("kaaba-mobile.mp4")
@@ -25,20 +24,24 @@ export function Hero() {
     kaaba.load();
     kaaba.play().catch(() => {});
 
-    // Background-fetch the hero video — don't play yet
+    // Fade in kaaba only once its first frame is drawable — avoids the blank flash
+    const onFirstFrame = () => setPhase("kaaba");
+    kaaba.addEventListener("loadeddata", onFirstFrame, { once: true });
+
+    // Background-fetch the hero video without playing it
     hero.src = videoUrl("hero-desktop.mp4");
     hero.load();
     const markReady = () => {
       heroReady.current = true;
     };
     hero.addEventListener("canplaythrough", markReady);
-    return () => hero.removeEventListener("canplaythrough", markReady);
+
+    return () => {
+      kaaba.removeEventListener("loadeddata", onFirstFrame);
+      hero.removeEventListener("canplaythrough", markReady);
+    };
   }, []);
 
-  // Poster → kaaba crossfade when kaaba first starts playing
-  const handleKaabaPlay = () => setPhase("kaaba");
-
-  // When kaaba ends: go to hero if ready, otherwise loop kaaba
   const handleKaabaEnded = () => {
     if (heroReady.current) {
       setPhase("hero");
@@ -51,7 +54,6 @@ export function Hero() {
     }
   };
 
-  // When hero ends: loop back to kaaba
   const handleHeroEnded = () => {
     const v = kaabaRef.current;
     if (!v) return;
@@ -62,25 +64,24 @@ export function Hero() {
 
   return (
     <section className="relative flex h-screen min-h-[700px] items-center overflow-hidden">
-      {/* Poster — instant on load, fades out when kaaba starts */}
+      {/* Poster — permanent base layer, always visible underneath; videos fade in on top */}
       <img
         src={assetPath("/images/family-hiking-colorado.jpg")}
         alt=""
         aria-hidden="true"
-        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${phase === "poster" ? "opacity-100" : "opacity-0"}`}
+        className="absolute inset-0 size-full object-cover"
       />
 
-      {/* Kaaba video — src set in useEffect to avoid eager browser fetch */}
+      {/* Kaaba video — fades in over the poster once first frame is ready */}
       <video
         ref={kaabaRef}
         className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${phase === "kaaba" ? "opacity-100" : "opacity-0"}`}
         muted
         playsInline
-        onPlay={handleKaabaPlay}
         onEnded={handleKaabaEnded}
       />
 
-      {/* Main hero video — background-fetched, plays after kaaba */}
+      {/* Hero video — fades in over the poster/kaaba when hero is ready */}
       <video
         ref={heroRef}
         className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${phase === "hero" ? "opacity-100" : "opacity-0"}`}
