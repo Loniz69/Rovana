@@ -26,7 +26,7 @@ export function Hero() {
 
     // Fade in kaaba only once its first frame is drawable — avoids the blank flash
     const onFirstFrame = () => setPhase("kaaba");
-    kaaba.addEventListener("loadeddata", onFirstFrame, { once: true });
+    kaaba.addEventListener("playing", onFirstFrame, { once: true });
 
     // Background-fetch the hero video without playing it
     hero.src = videoUrl("hero-desktop.mp4");
@@ -37,7 +37,7 @@ export function Hero() {
     hero.addEventListener("canplay", markReady);
 
     return () => {
-      kaaba.removeEventListener("loadeddata", onFirstFrame);
+      kaaba.removeEventListener("playing", onFirstFrame);
       hero.removeEventListener("canplay", markReady);
     };
   }, []);
