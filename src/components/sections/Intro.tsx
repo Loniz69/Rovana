@@ -1,16 +1,8 @@
-import { Button } from "@/components/Button";
-
 export function Intro() {
   return (
     <section className="bg-white py-20 text-center">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="font-heading mb-8 text-3xl tracking-wide">Every Journey Starts With A Feeling</h2>
         <div className="space-y-6 text-lg leading-relaxed text-foreground">
-          <p>
-            The world is vast, full of wonders. But information engulfs us. See this, do that, don&apos;t
-            miss this. It seems the more choice there is, the more overwhelmed we feel. What&apos;s more,
-            you&apos;re never asked <em>how you want to feel</em>.
-          </p>
           <p>
             That&apos;s not us. Rovana is a tailor-made luxury travel company that designs fully
             personalised itineraries – not templates, not off-the-shelf tours. Whether you&apos;re a couple
@@ -24,9 +16,6 @@ export function Intro() {
           </p>
           <p>So let&apos;s begin. Let&apos;s do something remarkable.</p>
         </div>
-        <Button variant="solid" href="#" comingSoon className="mt-8 border-black">
-          Get In Touch
-        </Button>
       </div>
     </section>
   );

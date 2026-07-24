@@ -70,6 +70,14 @@ export const TRIP_CARDS: TripCard[] = [
     image: "/images/trips/lost-generation.jpg",
   },
   {
+    nights: "14 nights",
+    country: "Saudi Arabia",
+    title: "Full Umrah Package",
+    description: "A fully guided pilgrimage to Mecca and Medina, with private transfers, premium accommodation near the Haram, and an expert religious guide throughout...",
+    price: "From £4,500 per person excl. flights",
+    image: "/images/trips/umrah.jpg",
+  },
+  {
     nights: "8 nights",
     country: "Brazil",
     title: "The Rhythm of Water",

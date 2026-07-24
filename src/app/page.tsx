@@ -19,8 +19,8 @@ export default function Home() {
       <main>
         <Hero />
         <Intro />
-        <Testimonials />
         <TripsCarousel />
+        <Testimonials />
         <PressStrip />
         <WhatWeDo />
         <GuideSection />

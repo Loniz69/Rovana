@@ -21,7 +21,7 @@ export function Hero() {
           The Luxury Travel Experts
         </h1>
         <p className="mt-6 text-base tracking-wide text-white/90 uppercase">
-          Tailor-made trips, award winning service. Est. 2012.
+          Tailor-made trips for every budget
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button variant="outline" href="#trips">

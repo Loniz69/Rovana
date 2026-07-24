@@ -19,7 +19,7 @@ export function TripsCarousel() {
       <div className="mx-auto max-w-[1600px] px-6">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 className="font-heading text-3xl tracking-wide uppercase">Explore Our Trips</h2>
+            <h2 className="font-heading text-3xl tracking-wide uppercase">Our Best Packages</h2>
             <p className="mt-2 text-white/70 italic">Remarkable experiences to inspire the mind</p>
           </div>
           <div className="flex gap-2">
