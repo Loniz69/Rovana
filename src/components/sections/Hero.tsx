@@ -4,64 +4,90 @@ import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/Button";
 import { assetPath, videoUrl } from "@/lib/asset-path";
 
+type Phase = "poster" | "kaaba" | "hero";
+
 export function Hero() {
   const kaabaRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLVideoElement>(null);
-  const [showKaaba, setShowKaaba] = useState(true);
+  const [phase, setPhase] = useState<Phase>("poster");
   const heroReady = useRef(false);
 
   useEffect(() => {
-    const v = heroRef.current;
-    if (!v) return;
-    v.src = videoUrl("hero-desktop.mp4");
-    v.load();
-    const mark = () => {
+    const kaaba = kaabaRef.current;
+    const hero = heroRef.current;
+    if (!kaaba || !hero) return;
+
+    // Pick the right kaaba clip for the viewport then start it immediately
+    kaaba.src =
+      window.innerWidth <= 767
+        ? videoUrl("kaaba-mobile.mp4")
+        : videoUrl("kaaba-desktop.mp4");
+    kaaba.load();
+    kaaba.play().catch(() => {});
+
+    // Background-fetch the hero video — don't play yet
+    hero.src = videoUrl("hero-desktop.mp4");
+    hero.load();
+    const markReady = () => {
       heroReady.current = true;
     };
-    v.addEventListener("canplaythrough", mark);
-    return () => v.removeEventListener("canplaythrough", mark);
+    hero.addEventListener("canplaythrough", markReady);
+    return () => hero.removeEventListener("canplaythrough", markReady);
   }, []);
 
-  const transition = () => {
-    setShowKaaba(false);
-    heroRef.current?.play();
-  };
+  // Poster → kaaba crossfade when kaaba first starts playing
+  const handleKaabaPlay = () => setPhase("kaaba");
 
+  // When kaaba ends: go to hero if ready, otherwise loop kaaba
   const handleKaabaEnded = () => {
     if (heroReady.current) {
-      transition();
+      setPhase("hero");
+      heroRef.current?.play().catch(() => {});
     } else {
       const v = kaabaRef.current;
       if (!v) return;
       v.currentTime = 0;
-      v.play();
+      v.play().catch(() => {});
     }
+  };
+
+  // When hero ends: loop back to kaaba
+  const handleHeroEnded = () => {
+    const v = kaabaRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+    setPhase("kaaba");
   };
 
   return (
     <section className="relative flex h-screen min-h-[700px] items-center overflow-hidden">
-      {/* Main hero — hidden until kaaba finishes; src set in useEffect for background fetch */}
-      <video
-        ref={heroRef}
-        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${showKaaba ? "opacity-0" : "opacity-100"}`}
-        muted
-        loop
-        playsInline
+      {/* Poster — instant on load, fades out when kaaba starts */}
+      <img
+        src={assetPath("/images/family-hiking-colorado.jpg")}
+        alt=""
+        aria-hidden="true"
+        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${phase === "poster" ? "opacity-100" : "opacity-0"}`}
       />
 
-      {/* Kaaba video — poster shows instantly while video buffers, then plays */}
+      {/* Kaaba video — src set in useEffect to avoid eager browser fetch */}
       <video
         ref={kaabaRef}
-        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${showKaaba ? "opacity-100" : "opacity-0"}`}
-        autoPlay
+        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${phase === "kaaba" ? "opacity-100" : "opacity-0"}`}
         muted
         playsInline
-        poster={assetPath("/images/trips/lost-generation.jpg")}
+        onPlay={handleKaabaPlay}
         onEnded={handleKaabaEnded}
-      >
-        <source media="(max-width: 767px)" src={videoUrl("kaaba-mobile.mp4")} type="video/mp4" />
-        <source src={videoUrl("kaaba-desktop.mp4")} type="video/mp4" />
-      </video>
+      />
+
+      {/* Main hero video — background-fetched, plays after kaaba */}
+      <video
+        ref={heroRef}
+        className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${phase === "hero" ? "opacity-100" : "opacity-0"}`}
+        muted
+        playsInline
+        onEnded={handleHeroEnded}
+      />
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/40" />
 
