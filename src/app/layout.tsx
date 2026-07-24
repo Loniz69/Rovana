@@ -25,8 +25,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const videosBase = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/videos`;
+
   return (
     <html lang="en" className={`${oswald.variable} ${jost.variable} h-full antialiased`}>
+      <head>
+        <link rel="preload" as="video" type="video/mp4" href={`${videosBase}/kaaba-desktop.mp4`} media="(min-width: 768px)" />
+        <link rel="preload" as="video" type="video/mp4" href={`${videosBase}/kaaba-mobile.mp4`} media="(max-width: 767px)" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
